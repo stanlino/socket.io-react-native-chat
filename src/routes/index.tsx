@@ -1,27 +1,12 @@
-import React from "react"
-import { NavigationContainer } from "@react-navigation/native"
-import { createStackNavigator } from "@react-navigation/stack"
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import React from "react";
 
-const Stack = createStackNavigator()
-const BottomTabs = createBottomTabNavigator()
+import AuthRoutes from "./auth.routes";
+import AppRoutes from "./app.routes";
 
-export const NotSignedRoutes: React.FC = () => {
+const Routes: React.FC = () => {
     return (
-        <NavigationContainer>
-			<Stack.Navigator>
-				
-			</Stack.Navigator>
-        </NavigationContainer>
+        <AuthRoutes /> 
     )
 }
 
-export const SignedRoutes: React.FC = () => {
-	return (
-		<NavigationContainer>
-			<BottomTabs.Navigator>
-				
-			</BottomTabs.Navigator>
-		</NavigationContainer>
-	)
-}
+export default Routes
