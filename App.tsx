@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text>Hello world</Text>
+      <Text>Seja Bem Vindo!</Text>
     </View>
   );
 };
@@ -17,8 +13,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+  },
 });
 
 export default App;
