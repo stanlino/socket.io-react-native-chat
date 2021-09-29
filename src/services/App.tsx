@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { NavigationContainer } from '@react-navigation/native';
-import Routes from '../routes';
-import ThemeProvider from '../contexts/theme';
+import {NavigationContainer} from '@react-navigation/native'
+import Routes from '../routes'
+import ThemeProvider from '../contexts/theme'
 
 const App: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const App: React.FC = () => {
         <Routes />
       </NavigationContainer>
     </ThemeProvider>
-  );
-};
+  )
+}
 
-export default App;
+export default App
