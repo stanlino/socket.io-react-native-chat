@@ -1,29 +1,27 @@
+import { useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
-import {
-  Button,
-  Container,
-  Image,
-  TitleLogin,
-  Text,
-  LoginOptions,
-} from './styled'
+import { RootStackParamList } from '../../routes/auth.routes'
+import { Button, Container, Image, Title, Text, LoginOptions } from './styled'
+
+type indexScreenProp = StackNavigationProp<RootStackParamList, 'login_index'>
 
 const LoginPage: React.FC = () => {
+  const navigation = useNavigation<indexScreenProp>()
+
   return (
-    <>
-      <Container>
-        <TitleLogin>Entre no chat!</TitleLogin>
-        <Image />
-        <LoginOptions>
-          <Button>
-            <Text>login com o Google</Text>
-          </Button>
-          <Button>
-            <Text>Login com Nº de telefone</Text>
-          </Button>
-        </LoginOptions>
-      </Container>
-    </>
+    <Container>
+      <Title>Entre no chat!</Title>
+      <Image source={require('../../assets/images/login.png')} />
+      <LoginOptions>
+        <Button>
+          <Text>login com o Google</Text>
+        </Button>
+        <Button onPress={() => navigation.navigate('login_phonenumber')}>
+          <Text>Login com Nº de telefone</Text>
+        </Button>
+      </LoginOptions>
+    </Container>
   )
 }
 
