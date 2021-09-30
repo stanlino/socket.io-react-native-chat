@@ -5,17 +5,22 @@ import { StackNavigationProp } from '@react-navigation/stack'
 
 import { StackParamList } from '../../routes/auth.routes'
 import { Button, Container, Image, Title, Text, LoginOptions } from './styled'
+import onGoogleButtonPress from '../../utils/login.with.google'
 
 const LoginPage: React.FC = () => {
   const navigation =
     useNavigation<StackNavigationProp<StackParamList, 'login_index'>>()
+
+  const handleLoginWithGoogle = () => {
+    onGoogleButtonPress().then(login => console.log(login.user.email))
+  }
 
   return (
     <Container>
       <Title>Entre no chat!</Title>
       <Image source={require('../../assets/images/login.png')} />
       <LoginOptions>
-        <Button>
+        <Button onPress={handleLoginWithGoogle}>
           <Text>login com o Google</Text>
         </Button>
         <Button onPress={() => navigation.navigate('login_phonenumber')}>
