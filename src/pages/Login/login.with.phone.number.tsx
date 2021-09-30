@@ -23,8 +23,11 @@ const LoginWithPhoneNumberPage: React.FC = () => {
 
   const navigateToConfirmCode_Page = () => {
     if (phoneNumber.length === 11) {
+      inputRef.current?.blur()
       updateState[1](!updateState[0])
-      navigate('confirm_code', { phoneNumber })
+      setTimeout(() => {
+        navigate('confirm_code', { phoneNumber })
+      }, 500)
     }
   }
 
@@ -46,7 +49,9 @@ const LoginWithPhoneNumberPage: React.FC = () => {
           blurOnSubmit={false}
           placeholder={'Digite seu número aqui'}
         />
-        <Button onPress={navigateToConfirmCode_Page}>
+        <Button
+          disabled={!(phoneNumber.length === 11)}
+          onPress={navigateToConfirmCode_Page}>
           <Text>Enviar código</Text>
         </Button>
       </View>

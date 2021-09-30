@@ -18,6 +18,12 @@ const ConfirmCode_Page = () => {
     '$1 $2 $3',
   )
 
+  const checkCode = () => {
+    inputRef.current?.blur()
+    updateState[1](!updateState[0])
+    setTimeout(() => {}, 500)
+  }
+
   return (
     <Container>
       <Title>Um código de verificação foi enviado para</Title>
@@ -36,7 +42,7 @@ const ConfirmCode_Page = () => {
           blurOnSubmit={false}
           placeholder={'Digite o código aqui'}
         />
-        <Button onPress={() => {}}>
+        <Button disabled={!code.length} onPress={checkCode}>
           <Text>Verificar</Text>
         </Button>
       </View>
