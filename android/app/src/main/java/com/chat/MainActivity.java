@@ -1,4 +1,4 @@
-package com.chat;
+package com.stanley.chat;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;

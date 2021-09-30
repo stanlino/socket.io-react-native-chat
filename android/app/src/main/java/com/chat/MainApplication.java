@@ -1,4 +1,4 @@
-package com.chat;
+package com.stanley.chat;
 
 import android.app.Application;
 import android.content.Context;
