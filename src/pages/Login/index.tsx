@@ -1,13 +1,14 @@
+import React from 'react'
+
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React from 'react'
-import { RootStackParamList } from '../../routes/auth.routes'
+
+import { StackParamList } from '../../routes/auth.routes'
 import { Button, Container, Image, Title, Text, LoginOptions } from './styled'
 
-type indexScreenProp = StackNavigationProp<RootStackParamList, 'login_index'>
-
 const LoginPage: React.FC = () => {
-  const navigation = useNavigation<indexScreenProp>()
+  const navigation =
+    useNavigation<StackNavigationProp<StackParamList, 'login_index'>>()
 
   return (
     <Container>
