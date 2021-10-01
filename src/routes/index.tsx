@@ -1,17 +1,19 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 
 import AuthRoutes from './auth.routes'
 import AppRoutes from './app.routes'
 
-import {ThemeContext} from 'styled-components'
-import {StatusBar} from 'react-native'
+import { ThemeContext } from 'styled-components'
+import { StatusBar } from 'react-native'
+import { useUser } from '../contexts/user'
 
 const Routes: React.FC = () => {
-  const {colors} = useContext(ThemeContext)
+  const { signed } = useUser()
+  const { colors } = useContext(ThemeContext)
 
   return (
     <>
-      <AuthRoutes />
+      {signed ? <AppRoutes /> : <AuthRoutes />}
       <StatusBar backgroundColor={colors.Bg} barStyle={'dark-content'} />
     </>
   )

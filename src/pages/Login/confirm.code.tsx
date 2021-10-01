@@ -4,8 +4,11 @@ import { View } from 'react-native'
 import { StackParamList } from '../../routes/auth.routes'
 import { Button, Container, Image, Text, TextInput, Title } from './styled'
 import auth from '@react-native-firebase/auth'
+import { useUser } from '../../contexts/user'
 
 const ConfirmCode_Page = () => {
+  const { updateUser } = useUser()
+
   const route = useRoute<RouteProp<StackParamList, 'confirm_code'>>()
   const { phoneNumber } = route.params
 
@@ -23,7 +26,7 @@ const ConfirmCode_Page = () => {
   const confirmCode = async () => {
     try {
       const confirmation = await confirm.confirm(code)
-      console.log(confirmation)
+      updateUser(confirmation)
     } catch (error) {
       console.log('Invalid code.')
     }
