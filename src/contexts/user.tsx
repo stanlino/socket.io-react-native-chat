@@ -1,41 +1,43 @@
-import auth from '@react-native-firebase/auth'
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
 interface UserContextData {
-  updateUser(user: object): void
   signed: boolean
+  userContact: string
 }
 
 const UserContext = createContext<UserContextData>({} as UserContextData)
 
 const UserProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<object | null>(null)
+  const [user, setUser] = useState<FirebaseAuthTypes.User>(
+    {} as FirebaseAuthTypes.User,
+  )
+
+  const currentUser = auth().currentUser
+
+  const userContact =
+    (currentUser?.email as string) || (currentUser?.phoneNumber as string)
 
   useEffect(() => {
-    const currentUser = auth().currentUser
     if (currentUser) {
-      updateUser(currentUser)
+      setUser(currentUser)
     }
-  }, [])
+  }, [currentUser])
 
   const signed = !!user
 
   console.log(signed)
 
-  const updateUser = (user: object) => {
-    setUser(user)
-  }
-
   return (
-    <UserContext.Provider value={{ updateUser, signed }}>
+    <UserContext.Provider value={{ signed, userContact }}>
       {children}
     </UserContext.Provider>
   )
 }
 
 export const useUser = () => {
-  const { updateUser, signed } = useContext(UserContext)
-  return { updateUser, signed }
+  const { signed, userContact } = useContext(UserContext)
+  return { signed, userContact }
 }
 
 export default UserProvider
