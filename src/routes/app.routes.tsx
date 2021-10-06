@@ -63,6 +63,7 @@ const BottomTabsRoutes: React.FC = () => {
 }
 
 const AppRoutes: React.FC = () => {
+  const { colors } = useContext(ThemeContext)
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -75,6 +76,12 @@ const AppRoutes: React.FC = () => {
       <Stack.Screen
         options={{
           headerShown: true,
+          headerStyle: {
+            backgroundColor: colors.Secundary,
+          },
+          headerTitleStyle: {
+            color: colors.Primary,
+          },
         }}
         component={ChatPage}
         name={'chat'}
