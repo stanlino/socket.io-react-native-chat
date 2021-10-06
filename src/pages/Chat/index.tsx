@@ -1,5 +1,5 @@
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/core'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { StackParamList } from '../../routes/app.routes'
 import {
   Container,
@@ -32,6 +32,8 @@ const ChatPage = () => {
   const { userContact } = useUser()
   const { sendMessageToServer } = useSocket()
   const [messageText, setMessageText] = useState('')
+
+  const scrollRef = useRef<ScrollView>({} as ScrollView)
 
   useEffect(() => {
     const getMessages = async () => {
@@ -71,7 +73,11 @@ const ChatPage = () => {
   return (
     <>
       <Container>
-        <ScrollView>
+        <ScrollView
+          ref={scrollRef}
+          onContentSizeChange={() =>
+            scrollRef.current.scrollToEnd({ animated: true })
+          }>
           {activeChat.map((message, index) => {
             const fromThisUser = message.from === userContact
             return (
