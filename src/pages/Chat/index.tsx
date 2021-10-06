@@ -1,12 +1,33 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-import { Container } from './styled'
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/core'
+import React, { useContext } from 'react'
+import { StackParamList } from '../../routes/app.routes'
+import { Container, BottomBar, TextInput, TouchableSend } from './styled'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import { ThemeContext } from 'styled-components/native'
 
 const ChatPage = () => {
+  const { setOptions } = useNavigation()
+  const { params } = useRoute<RouteProp<StackParamList, 'chat'>>()
+  const { colors, sizes } = useContext(ThemeContext)
+
+  setOptions({
+    title: params.contact_name,
+  })
+
   return (
-    <Container>
-      <Text></Text>
-    </Container>
+    <>
+      <Container></Container>
+      <BottomBar>
+        <TextInput />
+        <TouchableSend>
+          <Ionicons
+            name={'send'}
+            size={sizes.ten}
+            color={colors.Metallic_Seaweed}
+          />
+        </TouchableSend>
+      </BottomBar>
+    </>
   )
 }
 
