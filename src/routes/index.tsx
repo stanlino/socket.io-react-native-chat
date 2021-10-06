@@ -7,6 +7,7 @@ import { ThemeContext } from 'styled-components'
 import { StatusBar } from 'react-native'
 import { useUser } from '../contexts/user'
 import { useThemeContext } from '../contexts/theme'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 const Routes: React.FC = () => {
   const { signed } = useUser()
@@ -14,13 +15,13 @@ const Routes: React.FC = () => {
   const { theme } = useThemeContext()
 
   return (
-    <>
+    <SafeAreaProvider>
       {signed ? <AppRoutes /> : <AuthRoutes />}
       <StatusBar
         backgroundColor={colors.Secundary}
         barStyle={theme ? 'light-content' : 'dark-content'}
       />
-    </>
+    </SafeAreaProvider>
   )
 }
 
