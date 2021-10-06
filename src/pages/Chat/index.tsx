@@ -23,7 +23,12 @@ const ChatPage = () => {
   const { setOptions } = useNavigation()
   const { params } = useRoute<RouteProp<StackParamList, 'chat'>>()
   const { colors, sizes } = useContext(ThemeContext)
-  const { activeChat, updateActiveChat, AddMessageToActiveChat } = useChat()
+  const {
+    activeChat,
+    updateActiveChat,
+    AddMessageToActiveChat,
+    updateActiveContact,
+  } = useChat()
   const { userContact } = useUser()
   const { sendMessageToServer } = useSocket()
   const [messageText, setMessageText] = useState('')
@@ -32,6 +37,7 @@ const ChatPage = () => {
     const getMessages = async () => {
       const messages = await getChat(params.contact_id)
       updateActiveChat(messages)
+      updateActiveContact(params.contact_id)
     }
 
     setOptions({
@@ -42,6 +48,7 @@ const ChatPage = () => {
 
     return () => {
       updateActiveChat([])
+      updateActiveContact('')
     }
   }, [])
 
