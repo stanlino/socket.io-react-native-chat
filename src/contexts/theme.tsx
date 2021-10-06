@@ -4,6 +4,7 @@ import themes from '../themes'
 
 interface ThemeContextData {
   toggleTheme(): any
+  theme: boolean
 }
 
 const ThemeContext = createContext<ThemeContextData>({} as ThemeContextData)
@@ -18,15 +19,15 @@ const ThemeProvider: React.FC = ({ children }) => {
   }
 
   return (
-    <ThemeContext.Provider value={{ toggleTheme }}>
+    <ThemeContext.Provider value={{ toggleTheme, theme }}>
       <TP theme={theme ? light : dark}>{children}</TP>
     </ThemeContext.Provider>
   )
 }
 
 export function useThemeContext() {
-  const { toggleTheme } = useContext(ThemeContext)
-  return { toggleTheme }
+  const { toggleTheme, theme } = useContext(ThemeContext)
+  return { toggleTheme, theme }
 }
 
 export default ThemeProvider
