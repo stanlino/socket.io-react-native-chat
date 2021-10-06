@@ -5,6 +5,7 @@ import Routes from '../routes'
 import ThemeProvider from '../contexts/theme'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
 import UserProvider from '../contexts/user'
+import ChatProvider from '../contexts/chat'
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -17,9 +18,11 @@ const App: React.FC = () => {
   return (
     <UserProvider>
       <ThemeProvider>
-        <NavigationContainer>
-          <Routes />
-        </NavigationContainer>
+        <ChatProvider>
+          <NavigationContainer>
+            <Routes />
+          </NavigationContainer>
+        </ChatProvider>
       </ThemeProvider>
     </UserProvider>
   )
