@@ -9,24 +9,20 @@ interface UserContextData {
 const UserContext = createContext<UserContextData>({} as UserContextData)
 
 const UserProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<FirebaseAuthTypes.User>(
+  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(
     {} as FirebaseAuthTypes.User,
   )
 
   const currentUser = auth().currentUser
 
+  auth().onAuthStateChanged(user => setUser(user))
+
   const userContact =
     (currentUser?.email as string) || (currentUser?.phoneNumber as string)
 
-  useEffect(() => {
-    if (currentUser) {
-      setUser(currentUser)
-    }
-  }, [currentUser])
-
   const signed = !!user
 
-  console.log(signed)
+  console.log(user)
 
   return (
     <UserContext.Provider value={{ signed, userContact }}>
