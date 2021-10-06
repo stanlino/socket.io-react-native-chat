@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import getContacts from "./get.contacts"
 
 interface Contact {
     contact_name: string,
@@ -7,8 +8,7 @@ interface Contact {
 
 const saveContact = async (contact: Contact) => {
     try {
-        const jsonContactsGet = await AsyncStorage.getItem('@contacts')
-        const contacts = jsonContactsGet != null ? JSON.parse(jsonContactsGet) : []
+        const contacts = await getContacts()
 
         contacts.push(contact)
 
