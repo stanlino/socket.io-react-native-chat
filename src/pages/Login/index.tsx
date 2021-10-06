@@ -5,14 +5,14 @@ import { StackNavigationProp } from '@react-navigation/stack'
 
 import { StackParamList } from '../../routes/auth.routes'
 import { Button, Container, Image, Title, Text, LoginOptions } from './styled'
-import onGoogleButtonPress from '../../utils/login.with.google'
+import loginWithGoogle from '../../utils/login.with.google'
 
 const LoginPage: React.FC = () => {
   const navigation =
     useNavigation<StackNavigationProp<StackParamList, 'login_index'>>()
 
   const handleLoginWithGoogle = async () => {
-    const user = await onGoogleButtonPress()
+    const user = await loginWithGoogle()
   }
 
   return (
