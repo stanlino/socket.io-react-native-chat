@@ -6,3 +6,9 @@ export interface Contact {
 export interface AddContactModalProps {
     addContact(data: Contact): void
 }
+
+export interface Message {
+    to: string,
+    from: string,
+    message: string
+}
