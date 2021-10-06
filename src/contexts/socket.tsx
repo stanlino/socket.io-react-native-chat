@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo } from 'react'
 import { io } from 'socket.io-client'
 import { Message } from '../utils/interfaces'
 import { saveChat } from '../utils/save.chat'
+import { useChat } from './chat'
 import { useUser } from './user'
 
 interface SocketContextData {
@@ -12,6 +13,7 @@ const SocketContext = createContext<SocketContextData>({} as SocketContextData)
 
 const SocketProvider: React.FC = ({ children }) => {
   const { userContact } = useUser()
+  const { activeContact, AddMessageToActiveChat } = useChat()
 
   const socket = useMemo(() => {
     return io('https://socket-io-server-chat.herokuapp.com/chat')
@@ -21,15 +23,20 @@ const SocketProvider: React.FC = ({ children }) => {
     socket.emit('new-message', message)
   }
 
+  const saveMessage = async (message: Message) => {
+    await saveChat(message, message.from)
+    if (message.from === activeContact) {
+      AddMessageToActiveChat(message)
+    }
+  }
+
   useEffect(() => {
     socket.on('connect', () => {
-      console.log(`Conectado: ${socket.id} - ${userContact}`)
       socket.emit('join-room', userContact)
     })
 
     socket.on('new-message', message => {
-      console.log(message)
-      saveChat(message, message.from)
+      saveMessage(message)
     })
   }, [])
 
