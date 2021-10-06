@@ -1,11 +1,16 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { Text } from 'react-native'
+import { Container } from './styled'
+import AddContactModal from './add.contact.modal'
 
 const ContactsPage: React.FC = () => {
   return (
-    <View>
-      <Text></Text>
-    </View>
+    <>
+      <Container>
+        <Text></Text>
+        <AddContactModal />
+      </Container>
+    </>
   )
 }
 
