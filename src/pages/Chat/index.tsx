@@ -1,5 +1,5 @@
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/core'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { StackParamList } from '../../routes/app.routes'
 import { Container, BottomBar, TextInput, TouchableSend } from './styled'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -10,9 +10,11 @@ const ChatPage = () => {
   const { params } = useRoute<RouteProp<StackParamList, 'chat'>>()
   const { colors, sizes } = useContext(ThemeContext)
 
-  setOptions({
-    title: params.contact_name,
-  })
+  useEffect(() => {
+    setOptions({
+      title: params.contact_name,
+    })
+  }, [])
 
   return (
     <>
