@@ -1,19 +1,21 @@
 import React, { createContext, useContext, useState } from 'react'
 
+import { Message } from '../utils/interfaces'
+
 interface ChatContextData {
-  activeChat: Array<string>
-  updateActiveChat(chat: Array<string>): void
-  AddMessageToActiveChat(message: string): void
+  activeChat: Message[]
+  updateActiveChat(chat: Message[]): void
+  AddMessageToActiveChat(message: Message): void
 }
 
 const ChatContext = createContext<ChatContextData>({} as ChatContextData)
 
 const ChatProvider: React.FC = ({ children }) => {
-  const [activeChat, setActiveChat] = useState<Array<string>>([])
+  const [activeChat, setActiveChat] = useState<Message[]>([])
 
-  const updateActiveChat = (chat: Array<string>) => setActiveChat(chat)
+  const updateActiveChat = (chat: Message[]) => setActiveChat(chat)
 
-  const AddMessageToActiveChat = (message: string) =>
+  const AddMessageToActiveChat = (message: Message) =>
     setActiveChat(prevState => [...prevState, message])
 
   return (
