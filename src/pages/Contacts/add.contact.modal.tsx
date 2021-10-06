@@ -17,10 +17,10 @@ const AddContactModal = () => {
   const { sizes, colors } = useContext(ThemeContext)
   const [modalIsVisible, setModalIsVisible] = useState(false)
 
-  const [nameContact, setNameContact] = useState('')
+  const [contactName, setContactName] = useState('')
   const [contactID, setContactID] = useState('')
 
-  const saveDisabled = nameContact === '' || contactID === ''
+  const saveDisabled = contactName === '' || contactID === ''
 
   return (
     <>
@@ -37,7 +37,7 @@ const AddContactModal = () => {
           </ViewCloseButton>
           <Form>
             <Label>Nome</Label>
-            <TextInput onChangeText={text => setNameContact(text)} />
+            <TextInput onChangeText={text => setContactName(text)} />
           </Form>
           <Form>
             <Label>Telefone ou E-mail</Label>
