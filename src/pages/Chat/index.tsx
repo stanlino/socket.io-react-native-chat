@@ -17,6 +17,7 @@ import { getChat } from '../../utils/get.chat'
 import { sendAndSaveMessage } from '../../utils/send.and.save.message'
 import { useUser } from '../../contexts/user'
 import { ScrollView } from 'react-native'
+import { useSocket } from '../../contexts/socket'
 
 const ChatPage = () => {
   const { setOptions } = useNavigation()
@@ -24,6 +25,7 @@ const ChatPage = () => {
   const { colors, sizes } = useContext(ThemeContext)
   const { activeChat, updateActiveChat, AddMessageToActiveChat } = useChat()
   const { userContact } = useUser()
+  const { sendMessageToServer } = useSocket()
   const [messageText, setMessageText] = useState('')
 
   useEffect(() => {
@@ -53,6 +55,7 @@ const ChatPage = () => {
       const send = await sendAndSaveMessage(message, params.contact_id)
       if (send) {
         AddMessageToActiveChat(message)
+        sendMessageToServer(message)
         setMessageText('')
       }
     }
