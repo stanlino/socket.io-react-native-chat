@@ -15,10 +15,10 @@ const saveContact = async (contact: Contact) => {
         const jsonContactsSave = JSON.stringify(contacts)
         await AsyncStorage.setItem('@contacts', jsonContactsSave)
 
-        return contacts
+        return true
 
       } catch (e) {
-        // saving error
+        false
       }
     
 }
