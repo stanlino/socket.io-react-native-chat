@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { Props, useContext, useEffect, useState } from 'react'
 import {
   AddContactButton,
   Container,
@@ -12,8 +12,10 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { ThemeContext } from 'styled-components/native'
 import { Modal, TouchableOpacity } from 'react-native'
+import saveContact from '../../utils/save.contact'
+import { AddContactModalProps } from '../../utils/interfaces'
 
-const AddContactModal = () => {
+const AddContactModal = ({ addContact }: AddContactModalProps) => {
   const { sizes, colors } = useContext(ThemeContext)
   const [modalIsVisible, setModalIsVisible] = useState(false)
 
@@ -21,6 +23,18 @@ const AddContactModal = () => {
   const [contactID, setContactID] = useState('')
 
   const saveDisabled = contactName === '' || contactID === ''
+
+  const saveContactInAsyncStorage = async () => {
+    const contact = {
+      contact_id: contactID,
+      contact_name: contactName,
+    }
+    const data = await saveContact(contact)
+    if (data) {
+      addContact(contact)
+    }
+    setModalIsVisible(false)
+  }
 
   return (
     <>
@@ -47,7 +61,9 @@ const AddContactModal = () => {
             />
           </Form>
         </Container>
-        <SaveContactAndCloseModalButton disabled={saveDisabled}>
+        <SaveContactAndCloseModalButton
+          disabled={saveDisabled}
+          onPress={saveContactInAsyncStorage}>
           <Text>Salvar</Text>
         </SaveContactAndCloseModalButton>
       </Modal>
