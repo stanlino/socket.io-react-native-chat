@@ -22,8 +22,6 @@ const UserProvider: React.FC = ({ children }) => {
 
   const signed = !!user
 
-  console.log(user)
-
   return (
     <UserContext.Provider value={{ signed, userContact }}>
       {children}
