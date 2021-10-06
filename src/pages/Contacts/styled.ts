@@ -52,3 +52,16 @@ export const Text = styled(Label)`
     font-size: ${props => props.theme.sizes.one * 8}px;
     color: ${props => props.theme.colors.Primary};
 `
+
+export const TouchableContact = styled.TouchableOpacity`
+    height: ${props => props.theme.sizes.ten * 1.8}px;
+    padding: ${props => props.theme.sizes.one* 2}px;
+    justify-content: center;
+    border-bottom-width: 1px;
+    border-color: ${props => props.theme.colors.Beau_Blue};
+`
+export const NameContact = styled.Text`
+    font-size: ${props => props.theme.sizes.one * 5}px;
+    font-weight: 600;
+    color: ${props => props.theme.colors.Secundary};
+`

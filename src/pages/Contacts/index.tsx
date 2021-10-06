@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Container } from './styled'
+import { Container, TouchableContact, NameContact } from './styled'
 import AddContactModal from './add.contact.modal'
 import getContacts from '../../utils/get.contacts'
 import { Contact } from '../../utils/interfaces'
+import { ScrollView } from 'react-native'
 
 const ContactsPage: React.FC = () => {
   const [contacts, setContacts] = useState<Array<Contact>>([])
@@ -20,10 +21,17 @@ const ContactsPage: React.FC = () => {
     getContactsFromAsyncStorage()
   }, [])
 
-  console.log(contacts)
-
   return (
     <Container>
+      <ScrollView>
+        {contacts.map(contact => {
+          return (
+            <TouchableContact key={contact.contact_id}>
+              <NameContact>{contact.contact_name}</NameContact>
+            </TouchableContact>
+          )
+        })}
+      </ScrollView>
       <AddContactModal addContact={addContact} />
     </Container>
   )
