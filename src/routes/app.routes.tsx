@@ -4,10 +4,19 @@ import ContactsPage from '../pages/Contacts'
 import SettingsPage from '../pages/Settings'
 import { ThemeContext } from 'styled-components/native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import { createStackNavigator } from '@react-navigation/stack'
+import ChatPage from '../pages/Chat'
+import { Contact } from '../utils/interfaces'
+
+export type StackParamList = {
+  bottom_tabs: undefined
+  chat: Contact
+}
 
 const BottomTabs = createBottomTabNavigator()
+const Stack = createStackNavigator<StackParamList>()
 
-const AppRoutes: React.FC = () => {
+const BottomTabsRoutes: React.FC = () => {
   const { colors, sizes } = useContext(ThemeContext)
 
   return (
@@ -50,6 +59,27 @@ const AppRoutes: React.FC = () => {
         name={'settings'}
       />
     </BottomTabs.Navigator>
+  )
+}
+
+const AppRoutes: React.FC = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        component={BottomTabsRoutes}
+        name="bottom_tabs"
+      />
+      <Stack.Screen
+        options={{
+          headerShown: true,
+        }}
+        component={ChatPage}
+        name={'chat'}
+      />
+    </Stack.Navigator>
   )
 }
 
