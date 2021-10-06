@@ -7,7 +7,7 @@ const one = Math.round(ScreenWidth / 100)
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${props => props.theme.colors.Bg};
+  background-color: ${props => props.theme.colors.Primary};
   align-items: center;
 `
 
@@ -21,7 +21,7 @@ export const Title = styled.Text`
   font-size: ${one * 7}px;
   font-weight: bold;
   margin-top: ${one * 7}px;
-  color: ${props => props.theme.colors.Fg};
+  color: ${props => props.theme.colors.Secundary};
   text-align: center;
   padding-left: ${one}px;
   padding-right: ${one}px;
@@ -36,7 +36,7 @@ export const Button = styled.TouchableOpacity.attrs({
   margin-bottom: ${one * 2}px;
   border-bottom-width: 4px;
   border-right-width: 4px;
-  border-color: ${props => props.theme.colors.Fg};
+  border-color: ${props => props.theme.colors.Secundary};
   border-radius: ${ten / 3}px;
   border-bottom-left-radius: 0;
   border-top-right-radius: 0;
@@ -55,7 +55,7 @@ export const TextInput = styled.TextInput`
   margin-top: ${one * 3}px;
   margin-bottom: ${one}px;
   height: ${ten * 1.5}px;
-  border-color: ${props => props.value ? props.value?.replace(/\s/g, '').length === 11 ? 'green' : 'red' : props.theme.colors.Fg};
+  border-color: ${props => props.value ? props.value?.replace(/\s/g, '').length === 11 ? 'green' : 'red' : props.theme.colors.Secundary};
   border-radius: ${ten / 3}px;
   border-bottom-left-radius: 0;
   border-top-right-radius: 0;
