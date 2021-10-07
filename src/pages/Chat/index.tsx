@@ -63,7 +63,7 @@ const ChatPage = () => {
       }
       const send = await sendAndSaveMessage(message, params.contact_id)
       if (send) {
-        AddMessageToActiveChat(message)
+        AddMessageToActiveChat(message, params.contact_id)
         sendMessageToServer(message)
         setMessageText('')
       }

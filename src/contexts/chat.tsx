@@ -5,7 +5,7 @@ import { Message } from '../utils/interfaces'
 interface ChatContextData {
   activeChat: Message[]
   updateActiveChat(chat: Message[]): void
-  AddMessageToActiveChat(message: Message): void
+  AddMessageToActiveChat(message: Message, contact: string): void
   activeContact: string
   updateActiveContact(contact: string): void
 }
@@ -19,8 +19,13 @@ const ChatProvider: React.FC = ({ children }) => {
   const updateActiveChat = (chat: Message[]) => setActiveChat(chat)
   const updateActiveContact = (contact: string) => setActiveContact(contact)
 
-  const AddMessageToActiveChat = (message: Message) =>
-    setActiveChat(prevState => [...prevState, message])
+  console.log(`active contact no chat context -${activeContact}-`)
+
+  const AddMessageToActiveChat = (message: Message, contact: string) => {
+    if (contact == activeContact) {
+      setActiveChat(prevState => [...prevState, message])
+    }
+  }
 
   return (
     <ChatContext.Provider

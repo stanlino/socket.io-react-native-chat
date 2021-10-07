@@ -25,18 +25,18 @@ const SocketProvider: React.FC = ({ children }) => {
 
   const saveMessage = async (message: Message) => {
     await saveChat(message, message.from)
-    if (message.from === activeContact) {
-      AddMessageToActiveChat(message)
-    }
+    AddMessageToActiveChat(message, message.from)
   }
+
+  useEffect(() => {
+    socket.on('new-message', message => {
+      saveMessage(message)
+    })
+  }, [])
 
   useEffect(() => {
     socket.on('connect', () => {
       socket.emit('join-room', userContact)
-    })
-
-    socket.on('new-message', message => {
-      saveMessage(message)
     })
   }, [])
 
