@@ -14,45 +14,46 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import { ThemeContext } from 'styled-components/native'
 import { useChat } from '../../contexts/chat'
 import { getChat } from '../../utils/get.chat'
-import { sendAndSaveMessage } from '../../utils/send.and.save.message'
 import { useUser } from '../../contexts/user'
 import { ScrollView } from 'react-native'
 import { useSocket } from '../../contexts/socket'
+import { Message } from '../../utils/interfaces'
+import { saveChat } from '../../utils/save.chat'
 
 const ChatPage = () => {
   const { setOptions } = useNavigation()
   const { params } = useRoute<RouteProp<StackParamList, 'chat'>>()
   const { colors, sizes } = useContext(ThemeContext)
-  const {
-    activeChat,
-    updateActiveChat,
-    AddMessageToActiveChat,
-    updateActiveContact,
-  } = useChat()
+  const { lastMessageReceived, setLastMessageReceived } = useChat()
   const { userContact } = useUser()
   const { sendMessageToServer } = useSocket()
   const [messageText, setMessageText] = useState('')
+  const [messages, setMessages] = useState<Message[]>([])
 
   const scrollRef = useRef<ScrollView>({} as ScrollView)
 
   useEffect(() => {
     const getMessages = async () => {
       const messages = await getChat(params.contact_id)
-      updateActiveChat(messages)
-      updateActiveContact(params.contact_id)
+      setMessages(messages)
     }
+
+    getMessages()
 
     setOptions({
       title: params.contact_name,
     })
 
-    getMessages()
-
     return () => {
-      updateActiveChat([])
-      updateActiveContact('')
+      setLastMessageReceived({} as Message)
     }
   }, [])
+
+  useEffect(() => {
+    if (lastMessageReceived.message) {
+      setMessages(prevState => prevState.concat(lastMessageReceived))
+    }
+  }, [lastMessageReceived])
 
   const sendMessage = async () => {
     if (messageText !== '') {
@@ -61,9 +62,9 @@ const ChatPage = () => {
         to: params.contact_id,
         from: userContact,
       }
-      const send = await sendAndSaveMessage(message, params.contact_id)
+      const send = await saveChat(message, params.contact_id)
       if (send) {
-        AddMessageToActiveChat(message, params.contact_id)
+        setMessages(prevState => prevState.concat(message))
         sendMessageToServer(message)
         setMessageText('')
       }
@@ -78,7 +79,7 @@ const ChatPage = () => {
           onContentSizeChange={() =>
             scrollRef.current.scrollToEnd({ animated: true })
           }>
-          {activeChat.map((message, index) => {
+          {messages.map((message, index) => {
             const fromThisUser = message.from === userContact
             return (
               <MessageFatherView fromThisUser={fromThisUser} key={index}>
