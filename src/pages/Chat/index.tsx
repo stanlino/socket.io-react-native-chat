@@ -1,24 +1,16 @@
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/core'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { StackParamList } from '../../routes/app.routes'
-import {
-  Container,
-  BottomBar,
-  TextInput,
-  TouchableSend,
-  MessageFatherView,
-  MessageChildView,
-  Text,
-} from './styled'
+import { Container, BottomBar, TextInput, TouchableSend } from './styled'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { ThemeContext } from 'styled-components/native'
 import { useChat } from '../../contexts/chat'
 import { getChat } from '../../utils/get.chat'
 import { useUser } from '../../contexts/user'
-import { ScrollView } from 'react-native'
 import { useSocket } from '../../contexts/socket'
 import { Message } from '../../utils/interfaces'
 import { saveChat } from '../../utils/save.chat'
+import MessagesListing from './message.listing'
 
 const ChatPage = () => {
   const { setOptions } = useNavigation()
@@ -29,8 +21,6 @@ const ChatPage = () => {
   const { sendMessageToServer } = useSocket()
   const [messageText, setMessageText] = useState('')
   const [messages, setMessages] = useState<Message[]>([])
-
-  const scrollRef = useRef<ScrollView>({} as ScrollView)
 
   useEffect(() => {
     const getMessages = async () => {
@@ -74,22 +64,7 @@ const ChatPage = () => {
   return (
     <>
       <Container>
-        <ScrollView
-          ref={scrollRef}
-          onContentSizeChange={() =>
-            scrollRef.current.scrollToEnd({ animated: true })
-          }>
-          {messages.map((message, index) => {
-            const fromThisUser = message.from === userContact
-            return (
-              <MessageFatherView fromThisUser={fromThisUser} key={index}>
-                <MessageChildView fromThisUser={fromThisUser}>
-                  <Text>{message.message}</Text>
-                </MessageChildView>
-              </MessageFatherView>
-            )
-          })}
-        </ScrollView>
+        <MessagesListing messages={messages} />
       </Container>
       <BottomBar>
         <TextInput
