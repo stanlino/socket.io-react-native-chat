@@ -35,10 +35,12 @@ const SocketProvider: React.FC = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    socket.on('connect', () => {
-      socket.emit('join-room', userContact)
-    })
-  }, [])
+    if (socket.active) {
+      socket.on('connect', () => {
+        socket.emit('join-room', userContact)
+      })
+    }
+  }, [socket.active])
 
   return (
     <SocketContext.Provider value={{ sendMessageToServer }}>
