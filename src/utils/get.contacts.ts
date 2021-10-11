@@ -5,7 +5,7 @@ const getContacts = async () => {
         const jsonContacts = await AsyncStorage.getItem('@contacts')
         return jsonContacts != null ? JSON.parse(jsonContacts) : [];
     } catch (e) {
-        // saving error
+        return []
     }
     
 }
