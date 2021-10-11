@@ -13,7 +13,7 @@ const SocketContext = createContext<SocketContextData>({} as SocketContextData)
 
 const SocketProvider: React.FC = ({ children }) => {
   const { userContact } = useUser()
-  const { activeContact, AddMessageToActiveChat } = useChat()
+  const { setLastMessageReceived } = useChat()
 
   const socket = useMemo(() => {
     return io('https://socket-io-server-chat.herokuapp.com/chat')
@@ -23,14 +23,10 @@ const SocketProvider: React.FC = ({ children }) => {
     socket.emit('new-message', message)
   }
 
-  const saveMessage = async (message: Message) => {
-    await saveChat(message, message.from)
-    AddMessageToActiveChat(message, message.from)
-  }
-
   useEffect(() => {
     socket.on('new-message', message => {
-      saveMessage(message)
+      setLastMessageReceived(message)
+      saveChat(message, message.from)
     })
   }, [])
 
