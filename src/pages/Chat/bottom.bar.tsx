@@ -44,11 +44,7 @@ const BottomBar: React.FC<BottomBarProps> = ({ setMessages, contact_id }) => {
         onChangeText={text => setMessageText(text)}
       />
       <TouchableSend onPress={sendMessage}>
-        <Ionicons
-          name={'send'}
-          size={sizes.ten}
-          color={colors.Metallic_Seaweed}
-        />
+        <Ionicons name={'send'} size={sizes.ten / 2} color={colors.Primary} />
       </TouchableSend>
     </BB>
   )

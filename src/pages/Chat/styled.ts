@@ -13,17 +13,19 @@ export const BottomBar = styled.View`
     height: ${props => props.theme.sizes.ten * 1.5}px;
     padding: ${props => props.theme.sizes.one * 1}px;
     flex-direction: row;
-    background-color:  ${props => props.theme.colors.Primary};
+    background-color:  ${props => props.theme.colors.Secundary};
+    align-items: center;
 `
 
 export const TextInput = styled.TextInput.attrs({
     placeholderTextColor: 'grey',
     placeholder: 'Digite uma mensagem'
-})`
-    background-color: ${props => props.theme.colors.Secundary};
+})` 
+    height: ${props => props.theme.sizes.ten}px;
+    background-color: ${props => props.theme.colors.Primary};
     border-radius: ${props => props.theme.sizes.ten}px;
     flex: 1;
-    color: ${props => props.theme.colors.Primary};
+    color: ${props => props.theme.colors.Secundary};
     font-size: ${props => props.theme.sizes.one * 4}px;
     padding-left: ${props => props.theme.sizes.one * 3}px;
     padding-right: ${props => props.theme.sizes.one * 3}px;
@@ -33,6 +35,10 @@ export const TouchableSend = styled.TouchableOpacity`
     margin-left: ${props => props.theme.sizes.one}px;
     justify-content: center;
     align-items: center;
+    background-color: ${props => props.theme.colors.Metallic_Seaweed};
+    border-radius: ${props => props.theme.sizes.ten}px;
+    height: ${props => props.theme.sizes.ten}px;
+    width: ${props => props.theme.sizes.ten}px;
 `
 
 export const MessageFatherView = styled.View<MessageProps>`
@@ -47,9 +53,9 @@ export const MessageChildView = styled.View<MessageProps>`
     padding-left: ${props => props.theme.sizes.one * 2}px;
     padding-right: ${props => props.theme.sizes.one * 2}px;
     min-width: ${props => props.theme.sizes.ten * 1.5}px;
-    border-radius: ${props => props.theme.sizes.ten}px;
-    border-bottom-right-radius: ${props => props.fromThisUser ? 0 : props.theme.sizes.ten}px;
-    border-top-left-radius: ${props => props.fromThisUser ? props.theme.sizes.ten : 0}px;
+    border-radius: ${props => props.theme.sizes.one * 3}px;
+    border-bottom-right-radius: ${props => props.fromThisUser ? 0 : props.theme.sizes.one * 3}px;
+    border-top-left-radius: ${props => props.fromThisUser ? props.theme.sizes.one * 3 : 0}px;
 `
 export const Text = styled.Text`
     font-size: ${props => props.theme.sizes.one * 5}px;
