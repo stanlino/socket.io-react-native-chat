@@ -48,8 +48,10 @@ export const MessageFatherView = styled.View<MessageProps>`
 `
 export const MessageChildView = styled.View<MessageProps>`
     background-color: ${props => props.fromThisUser ? props.theme.colors.Lavender_Web : props.theme.colors.Beau_Blue};
-    height: ${props => props.theme.sizes.ten}px;
+    min-height: ${props => props.theme.sizes.ten}px;
     justify-content: center;
+    padding: ${props => props.theme.sizes.one}px;
+    max-width: ${props => props.theme.sizes.ten * 9.5}px;
     padding-left: ${props => props.theme.sizes.one * 2}px;
     padding-right: ${props => props.theme.sizes.one * 2}px;
     min-width: ${props => props.theme.sizes.ten * 1.5}px;
@@ -58,6 +60,6 @@ export const MessageChildView = styled.View<MessageProps>`
     border-top-left-radius: ${props => props.fromThisUser ? props.theme.sizes.one * 3 : 0}px;
 `
 export const Text = styled.Text`
-    font-size: ${props => props.theme.sizes.one * 5}px;
+    font-size: ${props => props.theme.sizes.one * 4}px;
     font-weight: 600;
 `
