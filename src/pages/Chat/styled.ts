@@ -19,7 +19,7 @@ export const BottomBar = styled.View`
 
 export const TextInput = styled.TextInput.attrs({
     placeholderTextColor: 'grey',
-    placeholder: 'Digite uma mensagem'
+    placeholder: 'Escreva uma mensagem'
 })` 
     height: ${props => props.theme.sizes.ten}px;
     background-color: ${props => props.theme.colors.Primary};
