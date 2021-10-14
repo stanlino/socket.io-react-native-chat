@@ -11,7 +11,6 @@ const LoginWithPhoneNumberPage: React.FC = () => {
 
   const [phoneNumber, setPhoneNumber] = useState('')
   const inputRef: any = useRef(null)
-  const inputIsFocused = inputRef.current?.isFocused()
 
   const phoneNumberFormat = phoneNumber.replace(
     /^(\d{2})(\d{5})(\d{4})/,
@@ -35,9 +34,7 @@ const LoginWithPhoneNumberPage: React.FC = () => {
     <Container>
       <Title>Vamos verificar seu número</Title>
 
-      {!inputIsFocused && (
-        <Image source={require('../../assets/images/phone_number.png')} />
-      )}
+      <Image source={require('../../assets/images/phone_number.png')} />
 
       <View>
         <TextInput

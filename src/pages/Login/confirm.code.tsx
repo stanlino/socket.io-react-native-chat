@@ -10,10 +10,10 @@ const ConfirmCode_Page = () => {
   const { phoneNumber } = route.params
 
   const [confirm, setConfirm] = useState<any>()
+  const [invalidCode, setInvalidCode] = useState(false)
   const updateState = useState(false)
   const [code, setCode] = useState('')
   const inputRef: any = useRef(null)
-  const inputIsFocused = inputRef.current?.isFocused()
 
   const phoneNumberFormat = phoneNumber.replace(
     /^(\d{2})(\d{5})(\d{4})/,
@@ -24,7 +24,7 @@ const ConfirmCode_Page = () => {
     try {
       const confirmation = await confirm.confirm(code)
     } catch (error) {
-      console.log('Invalid code.')
+      setInvalidCode(true)
     }
   }
 
@@ -39,13 +39,15 @@ const ConfirmCode_Page = () => {
 
   return (
     <Container>
-      <Title>Um código de verificação foi enviado para</Title>
-      <Text>{phoneNumberFormat}</Text>
-
-      {!inputIsFocused && (
+      <View>
+        <Title>{invalidCode ? 'Opa, código errado!' : 'Código enviado!'}</Title>
+        <Text>{phoneNumberFormat}</Text>
+      </View>
+      {invalidCode ? (
+        <Image source={require('../../assets/images/error_code.png')} />
+      ) : (
         <Image source={require('../../assets/images/check_code.png')} />
       )}
-
       <View>
         <TextInput
           onFocus={() => updateState[1](!updateState[0])}
