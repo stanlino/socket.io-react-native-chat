@@ -6,7 +6,7 @@ import AppRoutes from './app.routes'
 import { ThemeContext } from 'styled-components'
 import { StatusBar } from 'react-native'
 import { useUser } from '../contexts/user'
-import ThemeProvider, { useThemeContext } from '../contexts/theme'
+import { useThemeContext } from '../contexts/theme'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import ChatProvider from '../contexts/chat'
@@ -20,13 +20,11 @@ const Routes: React.FC = () => {
   return (
     <SafeAreaProvider>
       {signed ? (
-        <ThemeProvider>
-          <ChatProvider>
-            <SocketProvider>
-              <AppRoutes />
-            </SocketProvider>
-          </ChatProvider>
-        </ThemeProvider>
+        <ChatProvider>
+          <SocketProvider>
+            <AppRoutes />
+          </SocketProvider>
+        </ChatProvider>
       ) : (
         <AuthRoutes />
       )}
