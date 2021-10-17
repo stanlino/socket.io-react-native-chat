@@ -31,7 +31,7 @@ const ChatPage = () => {
   }, [])
 
   useEffect(() => {
-    if (lastMessageReceived.message) {
+    if (lastMessageReceived.from == params.contact_id) {
       setMessages(prevState => prevState.concat(lastMessageReceived))
     }
   }, [lastMessageReceived])
