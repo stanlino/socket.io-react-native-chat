@@ -2,11 +2,8 @@ import React, { useEffect } from 'react'
 
 import { NavigationContainer } from '@react-navigation/native'
 import Routes from '../routes'
-import ThemeProvider from '../contexts/theme'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
 import UserProvider from '../contexts/user'
-import ChatProvider from '../contexts/chat'
-import SocketProvider from '../contexts/socket'
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -18,15 +15,9 @@ const App: React.FC = () => {
 
   return (
     <UserProvider>
-      <ThemeProvider>
-        <ChatProvider>
-          <SocketProvider>
-            <NavigationContainer>
-              <Routes />
-            </NavigationContainer>
-          </SocketProvider>
-        </ChatProvider>
-      </ThemeProvider>
+      <NavigationContainer>
+        <Routes />
+      </NavigationContainer>
     </UserProvider>
   )
 }
