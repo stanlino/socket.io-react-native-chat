@@ -65,7 +65,10 @@ const BottomTabsRoutes: React.FC = () => {
 const AppRoutes: React.FC = () => {
   const { colors, sizes } = useContext(ThemeContext)
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        presentation: 'transparentModal',
+      }}>
       <Stack.Screen
         options={{
           headerShown: false,
