@@ -63,7 +63,7 @@ const BottomTabsRoutes: React.FC = () => {
 }
 
 const AppRoutes: React.FC = () => {
-  const { colors } = useContext(ThemeContext)
+  const { colors, sizes } = useContext(ThemeContext)
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -82,6 +82,13 @@ const AppRoutes: React.FC = () => {
           headerTitleStyle: {
             color: colors.Primary,
           },
+          headerBackImage: () => (
+            <Ionicons
+              name={'chevron-back'}
+              size={sizes.one * 7}
+              color={colors.Primary}
+            />
+          ),
         }}
         component={ChatPage}
         name={'chat'}
