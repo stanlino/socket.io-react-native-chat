@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native'
 const { width } = Dimensions.get('window')
 
 const myTheme: DefaultTheme = {
-  title: 'dark',
+  title: 'light',
   primaryColor: '#022B3A',
   secundaryColor: '#1F7A8C',
   backgroundColor: '#000000',
