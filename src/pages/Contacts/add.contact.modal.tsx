@@ -38,7 +38,10 @@ const AddContactModal = ({ addContact }: AddContactModalProps) => {
 
   return (
     <>
-      <Modal animationType={'slide'} visible={modalIsVisible}>
+      <Modal
+        animationType={'slide'}
+        visible={modalIsVisible}
+        onRequestClose={() => setModalIsVisible(false)}>
         <Container>
           <ViewCloseButton>
             <TouchableOpacity onPress={() => setModalIsVisible(false)}>

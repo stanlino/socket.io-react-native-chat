@@ -54,13 +54,36 @@ export const Text = styled(Label)`
     color: ${({ theme }) => theme.primaryColor};
 `
 
-export const TouchableContact = styled.TouchableOpacity`
+interface ITouchableContact {
+    selected: boolean
+}
+
+export const TouchableContact = styled.TouchableOpacity<ITouchableContact>`
     height: ${({ theme }) => theme.sizes.ten * 1.8}px;
     padding: ${({ theme }) => theme.sizes.one* 2}px;
     justify-content: center;
+    background-color: ${({ theme, selected }) => selected ? theme.colors.blue : theme.backgroundColor};
 `
 export const NameContact = styled.Text`
     font-size: ${({ theme }) => theme.sizes.one * 5}px;
     font-weight: 600;
     color: ${({ theme }) => theme.secundaryColor};
+`
+
+export const ViewContact = styled.View`
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+`
+
+export const TouchableDelete = styled.TouchableHighlight.attrs({
+    underlayColor: 'white'
+})`
+    height: ${({ theme }) => theme.sizes.ten}px;
+    width: ${({ theme }) => theme.sizes.ten}px;
+    border-radius: ${({ theme }) => theme.sizes.ten / 2}px;
+    align-items: center;
+    justify-content: center;
+    background-color: ${({ theme }) => theme.secundaryColor};
 `
