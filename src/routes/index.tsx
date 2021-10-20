@@ -6,7 +6,6 @@ import AppRoutes from './app.routes'
 import { ThemeContext } from 'styled-components'
 import { StatusBar } from 'react-native'
 import { useUser } from '../contexts/user'
-import { useThemeContext } from '../contexts/theme'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import ChatProvider from '../contexts/chat'
@@ -15,7 +14,6 @@ import SocketProvider from '../contexts/socket'
 const Routes: React.FC = () => {
   const { signed } = useUser()
   const { primaryColor } = useContext(ThemeContext)
-  const { theme } = useThemeContext()
 
   return (
     <SafeAreaProvider>
@@ -28,10 +26,7 @@ const Routes: React.FC = () => {
       ) : (
         <AuthRoutes />
       )}
-      <StatusBar
-        backgroundColor={primaryColor}
-        barStyle={theme ? 'light-content' : 'dark-content'}
-      />
+      <StatusBar backgroundColor={primaryColor} barStyle={'light-content'} />
     </SafeAreaProvider>
   )
 }
