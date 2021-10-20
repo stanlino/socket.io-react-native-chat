@@ -6,7 +6,7 @@ const myTheme: DefaultTheme = {
   title: 'dark',
   primaryColor: '#022B3A',
   secundaryColor: '#1F7A8C',
-  backgroundColor: '#FFFFFF',
+  backgroundColor: '#141414',
   colors: {
     blue: '#BFDBF7',
     whiteblue: '#E1E5F2',
