@@ -14,7 +14,7 @@ import SocketProvider from '../contexts/socket'
 
 const Routes: React.FC = () => {
   const { signed } = useUser()
-  const { colors } = useContext(ThemeContext)
+  const { primaryColor } = useContext(ThemeContext)
   const { theme } = useThemeContext()
 
   return (
@@ -29,7 +29,7 @@ const Routes: React.FC = () => {
         <AuthRoutes />
       )}
       <StatusBar
-        backgroundColor={colors.Secundary}
+        backgroundColor={primaryColor}
         barStyle={theme ? 'light-content' : 'dark-content'}
       />
     </SafeAreaProvider>

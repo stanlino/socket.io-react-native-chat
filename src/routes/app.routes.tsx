@@ -17,17 +17,17 @@ const BottomTabs = createBottomTabNavigator()
 const Stack = createStackNavigator<StackParamList>()
 
 const BottomTabsRoutes: React.FC = () => {
-  const { colors, sizes } = useContext(ThemeContext)
+  const { secundaryColor, primaryColor, sizes } = useContext(ThemeContext)
 
   return (
     <BottomTabs.Navigator
       screenOptions={{
         headerShown: true,
-        headerStyle: { backgroundColor: colors.Secundary },
-        headerTitleStyle: { color: colors.Primary },
+        headerStyle: { backgroundColor: primaryColor },
+        headerTitleStyle: { color: '#fff' },
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: colors.Secundary,
+          backgroundColor: primaryColor,
         },
       }}>
       <BottomTabs.Screen
@@ -37,7 +37,7 @@ const BottomTabsRoutes: React.FC = () => {
             <Ionicons
               name={focused ? 'chatbubble' : 'chatbubble-outline'}
               size={sizes.one * 7}
-              color={colors.Primary}
+              color={secundaryColor}
             />
           ),
         }}
@@ -51,7 +51,7 @@ const BottomTabsRoutes: React.FC = () => {
             <Ionicons
               name={focused ? 'settings' : 'settings-outline'}
               size={sizes.one * 7}
-              color={colors.Primary}
+              color={secundaryColor}
             />
           ),
         }}
@@ -63,7 +63,7 @@ const BottomTabsRoutes: React.FC = () => {
 }
 
 const AppRoutes: React.FC = () => {
-  const { colors, sizes } = useContext(ThemeContext)
+  const { secundaryColor, primaryColor, sizes } = useContext(ThemeContext)
   return (
     <Stack.Navigator
       screenOptions={{
@@ -80,16 +80,16 @@ const AppRoutes: React.FC = () => {
         options={{
           headerShown: true,
           headerStyle: {
-            backgroundColor: colors.Secundary,
+            backgroundColor: primaryColor,
           },
           headerTitleStyle: {
-            color: colors.Primary,
+            color: '#fff',
           },
           headerBackImage: () => (
             <Ionicons
               name={'chevron-back'}
               size={sizes.one * 7}
-              color={colors.Primary}
+              color={secundaryColor}
             />
           ),
         }}
