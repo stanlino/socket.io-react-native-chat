@@ -42,11 +42,7 @@ const AddContactModal = ({ addContact }: AddContactModalProps) => {
         <Container>
           <ViewCloseButton>
             <TouchableOpacity onPress={() => setModalIsVisible(false)}>
-              <Ionicons
-                name="close"
-                color={colors.Secundary}
-                size={sizes.ten}
-              />
+              <Ionicons name="close" color={colors.blue} size={sizes.ten} />
             </TouchableOpacity>
           </ViewCloseButton>
           <Form>
@@ -68,7 +64,7 @@ const AddContactModal = ({ addContact }: AddContactModalProps) => {
         </SaveContactAndCloseModalButton>
       </Modal>
       <AddContactButton onPress={() => setModalIsVisible(true)}>
-        <Ionicons name={'add'} size={sizes.one * 8} color={colors.Secundary} />
+        <Ionicons name={'add'} size={sizes.one * 8} color={colors.blue} />
       </AddContactButton>
     </>
   )
