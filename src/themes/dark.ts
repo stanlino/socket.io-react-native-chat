@@ -4,12 +4,12 @@ const { width } = Dimensions.get('window')
 
 const myTheme: DefaultTheme = {
   title: 'dark',
+  primaryColor: '#022B3A',
+  secundaryColor: '#1F7A8C',
+  backgroundColor: '#FFFFFF',
   colors: {
-    Primary: '#022B3A',
-    Secundary: '#FFFFFF',
-    Metallic_Seaweed: '#1F7A8C',
-    Beau_Blue: '#BFDBF7',
-    Lavender_Web: '#E1E5F2',
+    blue: '#BFDBF7',
+    whiteblue: '#E1E5F2',
   },
   sizes: {
     one: (width / 100),

@@ -3,12 +3,12 @@ import 'styled-components'
 declare module 'styled-components' {
   export interface DefaultTheme {
     title: string
+    primaryColor: string
+    secundaryColor: string
+    backgroundColor: string
     colors: {
-      Primary: string
-      Secundary: string
-      Metallic_Seaweed: string
-      Beau_Blue: string
-      Lavender_Web: string
+      blue: string
+      whiteblue: string
     },
     sizes: {
       one: number,
